@@ -1,0 +1,39 @@
+{
+    "menus": [
+        {
+            "id": 1,
+            "name": "Menu 12",
+            "description": "Sample description for Menu 1",
+            "price": 1000,
+            "image": "menu 1.png"
+        },
+        {
+            "id": 2,
+            "name": "Menu 2",
+            "description": "Sample description for Menu 2",
+            "price": 120,
+            "image": "menu 2.png"
+        },
+        {
+            "id": 3,
+            "name": "Menu 3",
+            "description": "Sample description for Menu 3",
+            "price": 140,
+            "image": "menu 3.png"
+        },
+        {
+            "id": 4,
+            "name": "Menu 4",
+            "description": "Sample description for Menu 4",
+            "price": 160,
+            "image": "menu 4.png"
+        },
+        {
+            "id": 5,
+            "name": "Menu 5",
+            "description": "Sample description for Menu 5",
+            "price": 180,
+            "image": "menu 5.png"
+        }
+    ]
+}

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->string('blog_title');
-            $table->longText('body');
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2)->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('tbl_signup');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('menus');
     }
 };

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->string('blog_title');
-            $table->longText('body');
+        Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
+            $table->string('action');
+            $table->text('details')->nullable();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('tbl_signup');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('activity_logs');
     }
 };
