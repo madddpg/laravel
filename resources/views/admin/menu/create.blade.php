@@ -9,7 +9,7 @@
             <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary">Back to Menu</a>
         </div>
 
-        <form action="{{ route('admin.menu.store') }}" method="POST" class="shadow p-4 rounded bg-white w-50 m-auto">
+        <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data" class="shadow p-4 rounded bg-white w-50 m-auto">
             @csrf
 
             <div class="mb-3">
@@ -30,7 +30,11 @@
                 @error('price')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
             </div>
 
-            <!-- In a full implementation, you would add a file input here for the menu image -->
+            <div class="mb-4">
+                <label for="image" class="form-label fw-bold">Menu Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                @error('image')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
+            </div>
 
             <div class="d-grid">
                 <button type="submit" class="btn btn-success btn-lg">Save Menu Item</button>

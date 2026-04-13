@@ -52,13 +52,20 @@ class AdminController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+        $imageName = 'default.png';
+        if ($request->hasFile('image')) {
+            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('assets/images'), $imageName);
+        }
 
         $menu = Menu::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => (float)$request->price,
-            'image' => 'default.png', // Temporary default image
+            'image' => $imageName,
         ]);
 
         $this->syncJsonFile();
@@ -80,9 +87,17 @@ class AdminController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $menu = Menu::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('assets/images'), $imageName);
+            $menu->image = $imageName;
+        }
+
         $menu->update([
             'name' => $request->name,
             'description' => $request->description,

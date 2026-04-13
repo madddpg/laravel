@@ -4,36 +4,43 @@
             "id": 1,
             "name": "Menu 12",
             "description": "Sample description for Menu 1",
-            "price": 1000,
+            "price": "1000.00",
             "image": "menu 1.png"
         },
         {
             "id": 2,
             "name": "Menu 2",
             "description": "Sample description for Menu 2",
-            "price": 120,
+            "price": "120.00",
             "image": "menu 2.png"
         },
         {
             "id": 3,
             "name": "Menu 3",
             "description": "Sample description for Menu 3",
-            "price": 140,
+            "price": "140.00",
             "image": "menu 3.png"
         },
         {
             "id": 4,
             "name": "Menu 4",
             "description": "Sample description for Menu 4",
-            "price": 160,
+            "price": "160.00",
             "image": "menu 4.png"
         },
         {
             "id": 5,
             "name": "Menu 5",
             "description": "Sample description for Menu 5",
-            "price": 180,
+            "price": "180.00",
             "image": "menu 5.png"
+        },
+        {
+            "id": 6,
+            "name": "Baked Egg Pie",
+            "description": "sdas",
+            "price": "12.00",
+            "image": "default.png"
         }
     ]
 }
