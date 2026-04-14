@@ -75,65 +75,49 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
-    public function register(Request $request)
+    public function loginCustomer(Request $request)
     {
         $data = $request->validate([
-            'username' => 'required|unique:tbl_signup,username',
-            'email' => 'required|email|unique:tbl_signup,email',
-            'password' => 'required|min:8'
+            'username' => 'required|string|max:255'
         ]);
 
-        $data['password'] = Hash::make($data['password']);
-
-        $user = User::create($data);
-        auth()->login($user);
-
-        return redirect('/menu')->with('success', 'Registration successful! You are now logged in.');
+        $request->session()->put('customer_username', $data['username']);
+        $request->session()->regenerate();
+        
+        return redirect('/menu')->with('success', 'Welcome, ' . $data['username'] . '!');
     }
 
-    public function login(Request $request)
+    public function loginAdmin(Request $request)
     {
-        $user_info = $request->validate([
-            'email' => 'required|email',
+        $request->validate([
             'password' => 'required'
         ]);
 
-        if (auth()->guard('admin')->attempt([
-            'email' => $user_info['email'],
-            'password' => $user_info['password']
+        // Attempt login for the first admin (or modify if multiple admins exist)
+        $admin = \App\Models\Admin::first();
+
+        if ($admin && auth()->guard('admin')->attempt([
+            'email' => $admin->email,
+            'password' => $request->password
         ])) {
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard')->with('success', 'Logged in as Admin successfully.');
         }
 
-        if (auth()->attempt([
-            'email' => $user_info['email'],
-            'password' => $user_info['password']
-        ])) {
-            $request->session()->regenerate();
-            return redirect('/menu')->with('success', 'Logged in successfully.');
-        }
-
-        return back()->withErrors(['email' => 'Invalid credentials'])->withInput();
+        return back()->withErrors(['password' => 'Invalid admin password'])->withInput();
     }
 
     public function logout(Request $request)
     {
         if (auth()->guard('admin')->check()) {
             auth()->guard('admin')->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-            return redirect('/');
         }
 
         auth()->logout();
+        $request->session()->forget('customer_username');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        
         return redirect('/');
     }
 }

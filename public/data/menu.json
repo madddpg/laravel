@@ -3,7 +3,7 @@
         {
             "id": 1,
             "name": "Menu 12",
-            "description": "Sample description for Menu 1",
+            "description": "Sample description for Menu 12",
             "price": "1000.00",
             "image": "menu 1.png"
         },
@@ -36,11 +36,11 @@
             "image": "menu 5.png"
         },
         {
-            "id": 6,
+            "id": 7,
             "name": "Baked Egg Pie",
-            "description": "sdas",
+            "description": "fdsdf",
             "price": "12.00",
-            "image": "default.png"
+            "image": "1776138516_iconstruct logos.png"
         }
     ]
 }

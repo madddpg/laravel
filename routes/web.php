@@ -24,7 +24,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/logs', [AdminController::class, 'logsIndex'])->name('admin.logs.index');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware([\App\Http\Middleware\CheckCustomerSession::class])->group(function () {
     Route::get('/menu', [MenuCartController::class, 'menu'])->name('menu');
     Route::post('/cart/add/{id}', [MenuCartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/increase/{id}', [MenuCartController::class, 'increaseQuantity'])->name('cart.increase');
@@ -34,10 +34,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // Authentications
-Route::get('/register', [UserController::class, 'showRegister'])->name('register.show');
-Route::post('/register', [UserController::class, 'register'])->name('register');
+// Route::get('/register', [UserController::class, 'showRegister'])->name('register.show');
+// Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/login/customer', [UserController::class, 'loginCustomer'])->name('login.customer');
+Route::post('/login/admin', [UserController::class, 'loginAdmin'])->name('login.admin');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // User Management

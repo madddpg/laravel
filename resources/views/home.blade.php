@@ -1,10 +1,11 @@
 <x-layouts.app>
   <x-slot:heading>
-    Home
+    Welcome
   </x-slot:heading>
 
-  <div class="d-flex justify-content-center align-items-center mb-5" style="min-height: 50vh;">
-    <a href="{{ route('menu') }}" class="btn btn-primary btn-lg">Open Menu</a>
+  <div class="d-flex justify-content-center align-items-center mb-5" style="min-height: 50vh; gap: 1rem;">
+    <a href="{{ route('login', ['tab' => 'customer']) }}" class="btn btn-primary btn-lg">Customer</a>
+    <a href="{{ route('login', ['tab' => 'admin']) }}" class="btn btn-outline-danger btn-lg">Admin</a>
   </div>
 </x-layouts.app>
 
