@@ -41,6 +41,13 @@
             "description": "fdsdf",
             "price": "12.00",
             "image": "1776138516_iconstruct logos.png"
+        },
+        {
+            "id": 9,
+            "name": "Meal 1",
+            "description": "sasdasdasdasdasdadas",
+            "price": "1000.00",
+            "image": "1776139888_Logo 2.png"
         }
     ]
 }
